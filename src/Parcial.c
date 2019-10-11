@@ -1,0 +1,81 @@
+/*
+ ============================================================================
+ Name        : Parcial.c
+ Author      : Sergio Tirante
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "libreria_modelo_parcial.h"
+int main(void) {
+
+	int opcion;
+	char salir;
+	int contadorIdClientes = 0;
+	int contadorIdPedidos = 0;
+	int retorno = ERROR;
+
+	Cliente cliente[QTY_CLIENTES];
+	Pedido pedido[QTY_PEDIDOS];
+	ClientInicializar(cliente, QTY_CLIENTES);
+	pedidoInicializar(pedido, QTY_PEDIDOS);
+	fflush(stdin);
+	do {
+		mostrarMenu();
+		printf("ingrese una opcion ");
+		fflush(stdin);
+		scanf("%d", &opcion);
+
+		switch (opcion) {
+		case 1: //Alta
+			clienteAlta(cliente, QTY_CLIENTES, &contadorIdClientes);
+			break;
+
+		case 2:
+			modificarPorId(cliente, QTY_CLIENTES);
+			break;
+
+		case 3:
+			bajaCliente(cliente, contadorIdClientes);
+
+			break;
+
+		case 4:
+			listarCliente(cliente, QTY_CLIENTES);
+			pedidoAlta(pedido, QTY_PEDIDOS, &contadorIdPedidos,
+					&contadorIdClientes);
+			break;
+
+		case 5:
+			listarPedidosPendientes(pedido, QTY_PEDIDOS);
+			ProcesarPedido(pedido, contadorIdPedidos);
+			break;
+
+		case 6:
+			listarCliente(cliente, QTY_PEDIDOS);
+			break;
+
+		case 7:
+			listarPedidosPendientes(pedido, QTY_PEDIDOS);
+
+			break;
+		case 8:
+			listarPedidosCompletos(pedido, QTY_PEDIDOS);
+
+			break;
+		case 9:
+			printf("esta seguro que desea salir?");
+			scanf("s%", &salir);
+			fflush(stdin);
+			break;
+		default:
+			printf("\nOpcion no valida");
+		}
+		fflush(stdin);
+	} while (salir != "s");
+	return retorno;
+}
