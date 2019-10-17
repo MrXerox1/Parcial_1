@@ -23,19 +23,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: Parcial
+all: Parcial_1
 
 # Tool invocations
-Parcial: $(OBJS) $(USER_OBJS)
+Parcial_1: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C Linker'
-	gcc  -o "Parcial" $(OBJS) $(USER_OBJS) $(LIBS)
+	gcc  -o "Parcial_1" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) Parcial
+	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) Parcial_1
 	-@echo ' '
 
 .PHONY: all clean dependents

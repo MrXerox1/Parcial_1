@@ -27,7 +27,7 @@ typedef struct {
 	char nombre[30];
 	char direccion[30];
 	char localidad[30];
-	int cuit;
+	long cuit;
 	int isEmpty;
 } Cliente;
 typedef struct {
@@ -59,10 +59,9 @@ int pedidoInicializar(Pedido pedido[], int size);
 int pedidoBuscarID(Pedido *pedido, int size, int valorBuscado, int *posicion);
 int ProcesarPedido(Pedido *pedido, int contadorId);
 int ingresoPedido(Pedido pedido[], int contadorId);
-
-/*
- int ingresoPedido(Pedido *pedido, int idCliente);
- int listarLLamadas(Pedido pedido[], int size);
- */
+int ingresoPedido(Pedido *pedido, int idCliente);
+int listarLLamadas(Pedido pedido[], int size);
+int listarPedidosCompletos(Pedido pedido[], int size);
+int listarPedidosPendiente(Pedido pedido[], int size);
 
 #endif /* LIBRERIA_MODELO_PARCIAL_H_ */

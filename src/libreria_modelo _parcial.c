@@ -14,6 +14,8 @@
 #define MENSAJE_ERROR "error ese id no es valido "
 #define MINIMO 0
 #define REINTENTOS 2
+#define MENSAJE_PEDIDO "ingrese el peso "
+#define MENSAJE_ERROR_PEDIDO "el peso es incorrecto "
 
 int mostrarMenu() {
 	int retorno = ERROR;
@@ -70,7 +72,7 @@ int clienteAlta(Cliente *cliente, int size, int *contadorID) {
 			printf("\n%s", cliente[posicion].nombre);
 			printf("\n%s", cliente[posicion].direccion);
 			printf("\n%s", cliente[posicion].localidad);
-			printf("\n%d", cliente[posicion].cuit);
+			printf("\n%ld", cliente[posicion].cuit);
 			printf("\n%d", cliente[posicion].idCliente);
 			retorno = RETORNO_EXITOSO;
 		}
@@ -94,7 +96,7 @@ int ingresoCliente(Cliente *cliente) {
 	__fpurge(stdin);
 	printf("\nIngrese numero de cuit \n");
 	__fpurge(stdin);
-	scanf("%d", &aux.cuit);
+	scanf("%ld", &aux.cuit);
 
 	*cliente = aux;
 
@@ -136,7 +138,7 @@ int modificarPorId(Cliente cliente[], int contadorId) {
 				printf("\n1)Nombre: %s", cliente[indice].nombre);
 				printf("\n2)localidad: %s", cliente[indice].localidad);
 				printf("\n3)direccion: %s", cliente[indice].direccion);
-				printf("\n4)cuit: %d", cliente[indice].cuit);
+				printf("\n4)cuit: %ld", cliente[indice].cuit);
 				printf("\n5)SALIR\n");
 				__fpurge(stdin);
 				;
@@ -169,7 +171,7 @@ int modificarPorId(Cliente cliente[], int contadorId) {
 				case 4:
 					printf("\nIngrese numero de cuit \n");
 					__fpurge(stdin);
-					scanf("%d", &cliente[indice].cuit);
+					scanf("%ld", &cliente[indice].cuit);
 					break;
 
 				case 5:
@@ -183,7 +185,7 @@ int modificarPorId(Cliente cliente[], int contadorId) {
 		} else {
 			printf("error al modificar");
 		}
-		retorno=RETORNO_EXITOSO;
+		retorno = RETORNO_EXITOSO;
 	}
 
 	return retorno;
@@ -214,11 +216,13 @@ int listarCliente(Cliente cliente[], int size) {
 	int i;
 	if (cliente != NULL && size >= 0) {
 		for (i = 0; i < size; i++) {
-			printf(
-					"\n Nombre:%s\n Localidad:%s\n Direccion:%s\n Cuit:%d\nidCliente:%d\n",
-					cliente[i].nombre, cliente[i].localidad,
-					cliente[i].direccion, cliente[i].cuit,
-					cliente[i].idCliente);
+			if (cliente[i].isEmpty == LLENO) {
+				printf(
+						"\n Nombre:%s\n Localidad:%s\n Direccion:%s\n Cuit:%ld\nidCliente:%d\n",
+						cliente[i].nombre, cliente[i].localidad,
+						cliente[i].direccion, cliente[i].cuit,
+						cliente[i].idCliente);
+			}
 		}
 		retorno = RETORNO_EXITOSO;
 	}
@@ -285,16 +289,15 @@ int ingresoPedido(Pedido *pedido, int contadorId) {
 	int id;
 	Pedido aux;
 	__fpurge(stdin);
-	printf("Ingrese el id del cliente \n");
 	if (getInt(&id, contadorId, MINIMO, REINTENTOS, MENSAJE, MENSAJE_ERROR)
 			== 0) {
-		id = aux.idCliente;
+		aux.idCliente=id;
 		__fpurge(stdin);
 	}
 	printf("\nIngrese el peso en kilos de los plasticos \n");
-	if (getInt(&id, KILO_MAXIMO, MINIMO, REINTENTOS, MENSAJE, MENSAJE_ERROR)
+	if (getInt(&id, KILO_MAXIMO, MINIMO, REINTENTOS, MENSAJE_PEDIDO, MENSAJE_ERROR_PEDIDO)
 			== 0) {
-		id = aux.kilos;
+		aux.kilos=id;
 	}
 	__fpurge(stdin);
 
@@ -313,20 +316,20 @@ int ProcesarPedido(Pedido *pedido, int contadorId) {
 	int maximo;
 	__fpurge(stdin);
 	;
-	if (getInt(&id, contadorId, MINIMO, REINTENTOS, MENSAJE, MENSAJE_ERROR)
+	if (getInt(&id, contadorId, MINIMO, REINTENTOS, MENSAJE, MENSAJE_ERROR_PEDIDO)
 			== 0) {
 		if (pedidoBuscarID(pedido, contadorId, id, &indice) == RETORNO_EXITOSO) {
 			maximo = pedido[indice].kilos;
-			if (getInt(&cantidad, maximo, MINIMO, REINTENTOS, MENSAJE,
-			MENSAJE_ERROR) > 0) {
+			if (getInt(&cantidad, maximo, MINIMO, REINTENTOS, MENSAJE_PEDIDO,
+					MENSAJE_ERROR_PEDIDO) > 0) {
 				if (maximo >= 0) {
 					pedido[indice].HDPE = cantidad;
 					maximo = maximo - cantidad;
 				}
 			}
 
-			if (getInt(&cantidad, maximo, MINIMO, REINTENTOS, MENSAJE,
-			MENSAJE_ERROR) > RETORNO_EXITOSO) {
+			if (getInt(&cantidad, maximo, MINIMO, REINTENTOS, MENSAJE_PEDIDO,
+					MENSAJE_ERROR_PEDIDO) > RETORNO_EXITOSO) {
 
 				if (maximo >= RETORNO_EXITOSO) {
 					pedido[indice].LDPE = cantidad;
@@ -335,8 +338,8 @@ int ProcesarPedido(Pedido *pedido, int contadorId) {
 			}
 
 			if (getInt(&cantidad, maximo, MINIMO, REINTENTOS,
-			MENSAJE,
-			MENSAJE_ERROR) > RETORNO_EXITOSO) {
+					MENSAJE_PEDIDO,
+					MENSAJE_ERROR_PEDIDO) > RETORNO_EXITOSO) {
 				if (maximo >= RETORNO_EXITOSO) {
 					pedido[indice].PP = cantidad;
 					maximo = maximo - cantidad;
@@ -364,7 +367,7 @@ int pedidoBuscarID(Pedido *pedido, int size, int valorBuscado, int *posicion) {
 	return retorno;
 }
 
-int listarPedidosPendientes(Pedido pedido[], int size) {
+int listarPedidosPendiente(Pedido pedido[], int size) {
 	int retorno = ERROR;
 	int i;
 	if (pedido != NULL && size >= 0) {
