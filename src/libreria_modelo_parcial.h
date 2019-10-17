@@ -16,7 +16,7 @@
 //isEmpty
 #define VACIO 0
 #define LLENO 1
-//estado ambulancia
+//estado Pedido
 #define PENDIENTE 0
 #define COMPLETADO 1
 //kilos maximos
