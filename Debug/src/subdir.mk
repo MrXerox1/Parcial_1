@@ -4,18 +4,24 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../src/Datos.c \
 ../src/Parcial.c \
 ../src/funciones.c \
+../src/informes.c \
 ../src/libreria_modelo\ _parcial.c 
 
 OBJS += \
+./src/Datos.o \
 ./src/Parcial.o \
 ./src/funciones.o \
+./src/informes.o \
 ./src/libreria_modelo\ _parcial.o 
 
 C_DEPS += \
+./src/Datos.d \
 ./src/Parcial.d \
 ./src/funciones.d \
+./src/informes.d \
 ./src/libreria_modelo\ _parcial.d 
 
 

@@ -40,6 +40,7 @@ typedef struct {
 	int estado; //(pendiente/completo)
 	int isEmpty;
 } Pedido;
+/*Prototipos del cliente*/
 int ClientInicializar(Cliente cliente[], int size);
 int clienteBuscarID(Cliente array[], int size, int valorBuscado, int *posicion);
 int clienteAlta(Cliente cliente[], int size, int *contadorID);
@@ -63,5 +64,8 @@ int ingresoPedido(Pedido *pedido, int idCliente);
 int listarLLamadas(Pedido pedido[], int size);
 int listarPedidosCompletos(Pedido pedido[], int size);
 int listarPedidosPendiente(Pedido pedido[], int size);
+/*carga de datos*/
+void cargaDatos(Cliente *cliente);
+void cargaPedidos(Pedido *pedido);
 
 #endif /* LIBRERIA_MODELO_PARCIAL_H_ */
