@@ -75,17 +75,7 @@ int main(void) {
 
 			break;
 		case 9:
-			informe_ClienteMasPedidosPendientes(pedido,QTY_PEDIDOS,cliente,QTY_CLIENTES);
-			informe_ClienteMasPedidosCompletados(pedido,QTY_PEDIDOS,cliente,QTY_CLIENTES);
-			informe_ClienteMasPedidos(pedido,QTY_PEDIDOS,cliente,QTY_CLIENTES);
-			informe_ClienteMasKilos(pedido,QTY_PEDIDOS,cliente,QTY_CLIENTES);
-			informe_ClienteMenosKilos(pedido,QTY_PEDIDOS,cliente,QTY_CLIENTES);
-			informe_ClienteMayorMilKilos(pedido,QTY_PEDIDOS,cliente,QTY_CLIENTES);
-			informe_ClienteMenorCienKilos(pedido,QTY_PEDIDOS,cliente,QTY_CLIENTES);
-			informe_ClienteImprimirCompletados(pedido,QTY_PEDIDOS,cliente,QTY_CLIENTES);
-			Informes_listarPorLocalidadpedido(pedido,QTY_PEDIDOS,cliente,QTY_CLIENTES);
-			informe_ClienteImprimirPolipropileno(pedido,QTY_PEDIDOS,cliente,QTY_CLIENTES);
-			informe_ClienteInformarPlasticosCuit(pedido,QTY_PEDIDOS,cliente,QTY_CLIENTES);
+			seleccionMenuInformes(pedido,QTY_PEDIDOS,cliente,QTY_CLIENTES);
 			break;
 		case 10:
 			printf("esta seguro que desea salir?");

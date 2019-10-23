@@ -8,6 +8,10 @@
 #ifndef INFORMES_H_
 #define INFORMES_H_
 
+void mostrarMenuInformes();
+
+void seleccionMenuInformes(Pedido *pedido,int sizePedido,Cliente *cliente,int sizeCliente);
+
 int informe_ClienteMasPedidosPendientes(Pedido *pedido, int sizePedido,
 		Cliente *cliente, int sizeCliente);
 int informe_ClienteMasPedidosCompletados(Pedido *pedido, int sizePedido,
