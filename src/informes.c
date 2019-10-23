@@ -17,6 +17,7 @@
 #define MINIMO_OPCION 0
 #define MENSAJE "\ningrese un cuit\n"
 #define MENSAJE_ERROR "\nERROR re ingrese el cuit\n"
+#define MAXIMO 99999999999
 #define MINIMO 1000
 #define REINTENTOS 2
 
@@ -450,8 +451,7 @@ int informe_ClienteImprimirPolipropileno(Pedido *pedido, int sizePedido,
 }
 
 int informe_ClienteInformarPlasticosCuit(Pedido *pedido, int sizePedido,
-		Cliente *cliente, int sizeCliente)
-{
+		Cliente *cliente, int sizeCliente) {
 	int retorno = ERROR;
 	long cuit;
 	float kilosReciclado;
@@ -459,44 +459,46 @@ int informe_ClienteInformarPlasticosCuit(Pedido *pedido, int sizePedido,
 	int plastico;
 	int j;
 	if (pedido != NULL && cliente != NULL && sizePedido > 0
-			&& sizeCliente > 0)
-	{
-		printf("ingre numero de cuit");
-		scanf("%ld",&cuit);
-		if(Cliente_buscarCuit(cliente,sizeCliente,cuit,&posicion)==RETORNO_EXITOSO)
+			&& sizeCliente > 0) {
+		if(getLong(&cuit, MAXIMO, MINIMO, REINTENTOS,MENSAJE,MENSAJE_ERROR)==RETORNO_EXITOSO)
 		{
-			{printf("elija que tipo de plastico desea\n1)HDPE\n2)LDPE\n3)PP\n");
-				if (getInt(&plastico, MAXIMO_OPCION, MINIMO_OPCION, REINTENTOS,MENSAJE_OPCION,
-						MENSAJE_OPCION_ERROR)==RETORNO_EXITOSO)
-				{
-					switch (plastico) {
-					case 1:
-						for (j = 0; j < sizePedido; j++) {
-							if (pedido[j].isEmpty==LLENO && pedido[j].estado==COMPLETADO && pedido[j].idCliente == cliente[posicion].idCliente) {
-								kilosReciclado = kilosReciclado + pedido[j].HDPE;
+			if(Cliente_buscarCuit(cliente,sizeCliente,cuit,&posicion)==RETORNO_EXITOSO)
+			{
+				{	printf("elija que tipo de plastico desea\n1)HDPE\n2)LDPE\n3)PP\n");
+					if (getInt(&plastico, MAXIMO_OPCION, MINIMO_OPCION, REINTENTOS,MENSAJE_OPCION,
+							MENSAJE_OPCION_ERROR)==RETORNO_EXITOSO)
+					{
+						switch (plastico) {
+							case 1:
+							for (j = 0; j < sizePedido; j++) {
+								if (pedido[j].isEmpty==LLENO && pedido[j].estado==COMPLETADO && pedido[j].idCliente == cliente[posicion].idCliente) {
+									kilosReciclado = kilosReciclado + pedido[j].HDPE;
+								}
 							}
-						}
-						break;
-					case 2:
-						for (j = 0; j < sizePedido; j++) {
-							if (pedido[j].isEmpty==LLENO && pedido[j].estado==COMPLETADO && pedido[j].idCliente == cliente[posicion].idCliente) {
-								kilosReciclado = kilosReciclado + pedido[j].LDPE;
+							break;
+							case 2:
+							for (j = 0; j < sizePedido; j++) {
+								if (pedido[j].isEmpty==LLENO && pedido[j].estado==COMPLETADO && pedido[j].idCliente == cliente[posicion].idCliente) {
+									kilosReciclado = kilosReciclado + pedido[j].LDPE;
+								}
 							}
-						}
-						break;
-					case 3:
-						for (j = 0; j < sizePedido; j++) {
-							if (pedido[j].isEmpty==LLENO && pedido[j].estado==COMPLETADO && pedido[j].idCliente == cliente[posicion].idCliente) {
-								kilosReciclado = kilosReciclado + pedido[j].PP;
+							break;
+							case 3:
+							for (j = 0; j < sizePedido; j++) {
+								if (pedido[j].isEmpty==LLENO && pedido[j].estado==COMPLETADO && pedido[j].idCliente == cliente[posicion].idCliente) {
+									kilosReciclado = kilosReciclado + pedido[j].PP;
+								}
+
 							}
+							break;
 						}
-						break;
 					}
 				}
 			}
+			retorno = RETORNO_EXITOSO;
 		}
-		printf("\nla cantidad total de plasticos del cliente %s es de: %f kg\n",cliente[posicion].nombre,kilosReciclado);
-		retorno = RETORNO_EXITOSO;
+		printf("\nla cantidad total de plasticos del cliente %s es de: %f kg\n",
+				cliente[posicion].nombre, kilosReciclado);
 	}
 	return retorno;
 }
@@ -511,7 +513,7 @@ int Cliente_buscarCuit(Cliente cliente[], int size, long valorBuscado, int *posi
 		{
 			if (cliente[i].isEmpty == LLENO && cliente[i].cuit == valorBuscado)
 					{
-				retorno = 0;
+				retorno = RETORNO_EXITOSO;
 				*posicion = i;
 				break;
 			}
