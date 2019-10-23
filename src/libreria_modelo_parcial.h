@@ -20,7 +20,7 @@
 #define PENDIENTE 0
 #define COMPLETADO 1
 //kilos maximos
-#define KILO_MAXIMO 200
+#define KILO_MAXIMO 5000
 
 typedef struct {
 	int idCliente;

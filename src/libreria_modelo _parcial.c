@@ -24,10 +24,11 @@ int mostrarMenu() {
 	printf("3. Baja del cliente\n");
 	printf("4. Nuevo pedido\n");
 	printf("5. Procesado de residuos\n");
-	printf("6. Listar cliente: que poseen su estado en PENDIENTE \n");
-	printf("7. INFORMAR:que poseen su estado en PENDIENTE \n");
-	printf("8. INFORMAR:que poseen su estado en COMPLETADO \n");
-	printf("9. SALIR\n");
+	printf("6. Listar clientes con Pedidos PENDIENTES\n");
+	printf("7. listar pedidos PENDIENTES \n");
+	printf("8. listar pedidos COMPLETADOS \n");
+	printf("9. menu de informes\n");
+	printf("10. SALIR\n");
 	return retorno;
 }
 

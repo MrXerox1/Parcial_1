@@ -54,10 +54,10 @@ void cargaDatos(Cliente *cliente) {
 	aux4.isEmpty = LLENO;
 	cliente[4] = aux4;
 	aux5.idCliente = 6;
-	strcpy(aux5.nombre, "DIA");
-	strcpy(aux5.localidad, "AVELLANEDA");
-	strcpy(aux5.direccion, "mitre 750");
-	aux5.cuit = 31545812533;
+	strcpy(aux5.nombre, "QUILMES");
+	strcpy(aux5.localidad, "QUILMES");
+	strcpy(aux5.direccion, "rocha 741");
+	aux5.cuit = 30545812533 ;
 	aux5.isEmpty = LLENO;
 	cliente[5] = aux5;
 }
@@ -91,21 +91,21 @@ void cargaPedidos(Pedido *pedido) {
 	aux1.PP = 30;
 	aux1.estado=COMPLETADO;
 	aux1.isEmpty = LLENO;
-	pedido[0] = aux1;
+	pedido[1] = aux1;
 	//pedido 3
 	aux2.idPedido = 3;
 	aux2.idCliente = 2;
 	aux2.kilos = 100;
 	aux2.estado=PENDIENTE;
 	aux2.isEmpty = LLENO;
-	pedido[0] = aux2;
+	pedido[2] = aux2;
 	//pedido 4
 	aux3.idPedido = 4;
 	aux3.idCliente = 2;
 	aux3.kilos = 300;
 	aux3.estado=PENDIENTE;
 	aux3.isEmpty = LLENO;
-	pedido[0] = aux3;
+	pedido[3] = aux3;
 	//pedido 5
 	aux4.idPedido = 5;
 	aux4.idCliente = 3;
@@ -115,7 +115,7 @@ void cargaPedidos(Pedido *pedido) {
 	aux4.PP = 270;
 	aux4.estado=COMPLETADO;
 	aux4.isEmpty = LLENO;
-	pedido[0] = aux4;
+	pedido[4] = aux4;
 	//pedido 6
 	aux5.idPedido = 6;
 	aux5.idCliente = 4;
@@ -125,14 +125,14 @@ void cargaPedidos(Pedido *pedido) {
 	aux5.PP = 70;
 	aux5.estado=COMPLETADO;
 	aux5.isEmpty = LLENO;
-	pedido[0] = aux5;
+	pedido[5] = aux5;
 	//pedido 7
 	aux6.idPedido = 7;
 	aux6.idCliente = 1;
 	aux6.kilos = 200;
 	aux6.estado=PENDIENTE;
 	aux6.isEmpty = LLENO;
-	pedido[0] = aux6;
+	pedido[6] = aux6;
 	//pedido 8
 	aux7.idPedido = 8;
 	aux7.idCliente = 5;
@@ -142,13 +142,13 @@ void cargaPedidos(Pedido *pedido) {
 	aux7.PP = 3;
 	aux7.estado=COMPLETADO;
 	aux7.isEmpty = LLENO;
-	pedido[0] = aux7;
+	pedido[7] = aux7;
 	//pedido 9
 	aux8.idPedido = 9;
 	aux8.idCliente = 6;
 	aux8.kilos = 456;
 	aux8.estado=PENDIENTE;
 	aux8.isEmpty = LLENO;
-	pedido[0] = aux8;
+	pedido[8] = aux8;
 }
 

@@ -10,6 +10,7 @@
 
 #define RETORNO_EXITOSO 0
 #define ERROR_UNO -1
+int getLong(long *resultado,long maximo,long minimo,int reintentos,char* mensaje, char* mensajeError);
 int getInt(int *resultado,int maximo,int minimo,int reintentos,char* mensaje, char* mensajeError);
 int initArrayInt(int *pArray , int limite, int valor);
 int getArrayInt(int *pArray, int limite, int maximo, int minimo, int reintentos, char *mensaje, char *mensajeError);

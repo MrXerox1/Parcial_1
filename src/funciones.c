@@ -9,6 +9,25 @@
 #include <stdlib.h>
 #include "biblioteca_sergio.h"
 #define INDICE 0
+int getLong(long *resultado,long maximo,long minimo,int reintentos,char* mensaje, char* mensajeError)
+{
+	long numero;
+	int retorno= ERROR_UNO;
+	do
+	{
+		printf("%s",mensaje);
+		if(scanf("%ld",&numero)==1 && numero >= minimo && numero <= maximo)
+		{
+			*resultado = numero;
+			retorno = RETORNO_EXITOSO;
+			break;
+		}
+		printf("%s",mensajeError);
+		reintentos--;
+	}while(reintentos >= 0);
+	return retorno;
+}
+
 int getInt(int *resultado,int maximo,int minimo,int reintentos,char* mensaje, char* mensajeError)
 {
 	int numero;

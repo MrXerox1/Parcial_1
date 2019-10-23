@@ -20,6 +20,12 @@ ID:8 - ID_C:5 - k_tot: 30 - k_p1:10 - k_p2:5 - k_p3: 3 - estado:Completado
 ID:9 - ID_C:6 - k_tot: 456 - estado:Pendiente
 
 
+1 2000
+2 400
+3 1500
+4 750
+5 30
+6 456
 
 
 
